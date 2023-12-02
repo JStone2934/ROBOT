@@ -1,0 +1,2 @@
+learning_action:learning_communication:learning_parameter:learning_tf:mrobot_description:mrobot_gazebo:mrobot_teleop:turtle_tracing:turtlesim_contrl
+-DCATKIN_DEVEL_PREFIX=/home/jstone/Documents/ROBOT/ros_1/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/jstone/Documents/ROBOT/ros_1/catkin_ws/install -G Unix Makefiles

@@ -1,0 +1,363 @@
+<?xml version="1.0"?>
+<robot name="fw" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:macro name="fw">
+
+    <link name="base_link">
+        <visual>
+            <geometry>
+                <!--- 0.0 0 -0.04  1.5708 3.14159-->
+                  <box size="0.5 0.2 0.1" />
+            </geometry>
+            <origin xyz="0 0 0.1" rpy="0 0 0" /> 
+        </visual>
+        <collision>
+            <origin xyz="0 0 0.1" rpy="0 0 0" /> 
+            <geometry>
+               <box size="0.5 0.2 0.1" />
+            </geometry>
+        </collision>
+        <inertial>
+            <origin xyz="0 0 0.1" rpy="0 0 0" /> 
+            <mass value="100" />
+            <inertia  ixx="1.0" ixy="0.0"  ixz="0.0"  iyy="1.0"  iyz="0.0"  izz="1.0" />
+        </inertial>
+    </link>
+    <joint name="base_left_motor_joint" type="fixed">
+        <origin xyz="-0.16 -0.11 0.05" rpy="0 0 0" />        
+        <parent link="base_link"/>
+        <child link="left_f_motor"/>
+    </joint>
+    <link name="left_f_motor">
+        <visual>
+            <origin xyz="0 0 0" rpy="1.5707 0 0"/>
+            <geometry>
+                <sphere radius="0.0165" />
+            </geometry>
+            <material name="black">
+                <color rgba="0 0 0 0.95"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="1.5707 0 0"/>
+            <geometry>
+                <sphere radius="0.0165" />
+            </geometry>
+        </collision>
+        <inertial>
+            <origin xyz="0 0 0" rpy="1.5707 0 0"/>
+            <mass value="1" />
+            <inertia  ixx="1.0" ixy="0.0"  ixz="0.0"  iyy="1.0"  iyz="0.0"  izz="1.0" />
+        </inertial>
+    </link>
+
+    <joint name="base_right_motor_joint" type="fixed">
+        <origin xyz="-0.16 0.11 0.05" rpy="0 0 0" />        
+        <parent link="base_link"/>
+        <child link="right_f_motor"/>
+    </joint>
+    <link name="right_f_motor">
+        <visual>
+            <origin xyz="0 0 0" rpy="1.5707 0 0"/>
+            <geometry>
+                <sphere radius="0.0165" />
+            </geometry>
+            <material name="black">
+                <color rgba="0 0 0 0.95"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="1.5707 0 0"/>
+            <geometry>
+                <sphere radius="0.0165" />
+            </geometry>
+        </collision>
+        <inertial>
+            <origin xyz="0 0 0" rpy="1.5707 0 0"/>
+            <mass value="1" />
+            <inertia  ixx="1.0" ixy="0.0"  ixz="0.0"  iyy="1.0"  iyz="0.0"  izz="1.0" />
+        </inertial>
+    </link>
+
+    <joint name="base_right_b_motor_joint" type="fixed">
+        <origin xyz="0.16 0.11 0.05" rpy="0 0 0" />        
+        <parent link="base_link"/>
+        <child link="right_b_f_motor"/>
+    </joint>
+    <link name="right_b_f_motor">
+        <visual>
+            <origin xyz="0 0 0" rpy="1.5707 0 0"/>
+            <geometry>
+                <sphere radius="0.0165" />
+            </geometry>
+            <material name="black">
+                <color rgba="0 0 0 0.95"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="1.5707 0 0"/>
+            <geometry>
+                <sphere radius="0.0165" />
+            </geometry>
+        </collision>
+        <inertial>
+            <origin xyz="0 0 0" rpy="1.5707 0 0"/>
+            <mass value="1" />
+            <inertia  ixx="1.0" ixy="0.0"  ixz="0.0"  iyy="1.0"  iyz="0.0"  izz="1.0" />
+        </inertial>
+    </link>
+
+    <joint name="base_left_b_motor_joint" type="fixed">
+        <origin xyz="0.16 -0.11 0.05" rpy="0 0 0" />        
+        <parent link="base_link"/>
+        <child link="left_b_f_motor"/>
+    </joint>
+    <link name="left_b_f_motor">
+        <visual>
+            <origin xyz="0 0 0" rpy="1.5707 0 0"/>
+            <geometry>
+                <sphere radius="0.0165" />
+            </geometry>
+            <material name="black">
+                <color rgba="0 0 0 0.95"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="1.5707 0 0"/>
+            <geometry>
+                <sphere radius="0.0165" />
+            </geometry>
+        </collision>
+        <inertial>
+            <origin xyz="0 0 0" rpy="1.5707 0 0"/>
+            <mass value="1" />
+            <inertia  ixx="1.0" ixy="0.0"  ixz="0.0"  iyy="1.0"  iyz="0.0"  izz="1.0" />
+        </inertial>
+    </link>
+
+
+    <joint name="left_wheel_joint" type="continuous">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <parent link="left_f_motor"/>
+        <child link="left_wheel_link"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+    <link name="left_wheel_link">
+    <surface>
+ <!--###########################-->
+        <friction>
+          <ode>
+            <mu>0.7</mu>
+            <mu2>0.7</mu2>
+          </ode>
+        </friction>
+<!--###########################-->
+    </surface>
+        <visual>
+            <origin xyz="0 0 0" rpy="1.5707 0 0"/>
+            <geometry>
+                <cylinder radius="0.05" length = "0.017"/>
+            </geometry>
+            <material name="black">
+                <color rgba="0 0 0 0.95"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="1.5707 0 0"/>
+            <geometry>
+                <cylinder radius="0.05" length = "0.017"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <origin xyz="0 0 0" rpy="1.5707 0 0"/>
+            <mass value="1" />
+            <inertia  ixx="1.0" ixy="0.0"  ixz="0.0"  iyy="1.0"  iyz="0.0"  izz="1.0" />
+        </inertial>
+    </link>
+
+    <joint name="right_wheel_joint" type="continuous">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <parent link="right_f_motor"/>
+        <child link="right_wheel_link"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+    <link name="right_wheel_link">
+    <surface>
+ <!--###########################-->
+        <friction>
+          <ode>
+            <mu>0.7</mu>
+            <mu2>0.7</mu2>
+          </ode>
+        </friction>
+<!--###########################-->
+    </surface>
+        <visual>
+            <origin xyz="0 0 0" rpy="1.5707 0 0"/>
+            <geometry>
+                <cylinder radius="0.05" length = "0.017"/>
+            </geometry>
+            <material name="black">
+                <color rgba="0 0 0 0.95"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="1.5707 0 0"/>
+            <geometry>
+                <cylinder radius="0.05" length = "0.017"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <origin xyz="0 0 0" rpy="1.5707 0 0"/>
+            <mass value="1" />
+            <inertia  ixx="1.0" ixy="0.0"  ixz="0.0"  iyy="1.0"  iyz="0.0"  izz="1.0" />
+        </inertial>
+    </link>
+
+    <joint name="b_right_wheel_joint" type="continuous">
+        <origin xyz="0 0 0 " rpy="0 0 0"/>
+        <parent link="right_b_f_motor"/>
+        <child link="b_right_wheel_link"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+    <link name="b_right_wheel_link">
+    <surface>
+ <!--###########################-->
+        <friction>
+          <ode>
+            <mu>0.01</mu>
+            <mu2>0.01</mu2>
+          </ode>
+        </friction>
+<!--###########################-->
+    </surface>
+
+        <visual>
+            <origin xyz="0 0 0" rpy="1.5707 0 0"/>
+            <geometry>
+                <cylinder radius="0.05" length = "0.017"/>
+            </geometry>
+            <material name="black">
+                <color rgba="0 0 0 0.95"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="1.5707 0 0"/>
+            <geometry>
+                <cylinder radius="0.05" length = "0.017"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <origin xyz="0 0 0" rpy="1.5707 0 0"/>
+            <mass value="1" />
+            <inertia  ixx="1.0" ixy="0.0"  ixz="0.0"  iyy="1.0"  iyz="0.0"  izz="1.0" />
+        </inertial>
+    </link>
+
+    <joint name="b_left_wheel_joint" type="continuous">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <parent link="left_b_f_motor"/>
+        <child link="b_left_wheel_link"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+    <link name="b_left_wheel_link">
+            <surface>
+ <!--###########################-->
+        <friction>
+          <ode>
+            <mu>0</mu>
+            <mu2>0</mu2>
+          </ode>
+        </friction>
+<!--###########################-->
+    </surface>
+        <visual>
+            <origin xyz="0 0 0" rpy="1.5707 0 0"/>
+            <geometry>
+                <cylinder radius="0.05" length = "0.017"/>
+            </geometry>
+            <material name="black">
+                <color rgba="0 0 0 0.95"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="1.5707 0 0"/>
+            <geometry>
+                <cylinder radius="0.05" length = "0.017"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <origin xyz="0 0 0" rpy="1.5707 0 0"/>
+            <mass value="1" />
+            <inertia  ixx="1.0" ixy="0.0"  ixz="0.0"  iyy="1.0"  iyz="0.0"  izz="1.0" />
+        </inertial>
+    </link>
+
+
+    <transmission name="b_left_wheel_joint">
+            <type>transmission_interface/SimpleTransmission</type>
+            <joint name="b_left_wheel_joint" />
+            <actuator name="left_b_f_motor">
+                <hardwareInterface>VelocityJointInterface</hardwareInterface>
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
+    </transmission>
+
+    <transmission name="b_right_wheel_joint">
+            <type>transmission_interface/SimpleTransmission</type>
+            <joint name="b_right_wheel_joint" />
+            <actuator name="right_b_f_motor">
+                <hardwareInterface>VelocityJointInterface</hardwareInterface>
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
+    </transmission>
+
+    <transmission name="left_wheel_joint">
+            <type>transmission_interface/SimpleTransmission</type>
+            <joint name="left_wheel_joint" />
+            <actuator name="left_f_motor">
+                <hardwareInterface>VelocityJointInterface</hardwareInterface>
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
+    </transmission>
+
+    <transmission name="right_wheel_joint">
+            <type>transmission_interface/SimpleTransmission</type>
+            <joint name="right_wheel_joint" />
+            <actuator name="right_f_motor">
+                <hardwareInterface>VelocityJointInterface</hardwareInterface>
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
+    </transmission>
+
+
+          <!-- controller -->
+        <gazebo>
+            <plugin name="differential_drive_controller" filename="/opt/ros/noetic/lib/libgazebo_ros_diff_drive.so">
+                <rosDebugLevel>Debug</rosDebugLevel>
+                <publishWheelTF>false</publishWheelTF>
+                <robotNamespace>/</robotNamespace>                
+                <publishOdomTF>1</publishOdomTF>
+                <publishWheelJointState>false</publishWheelJointState>
+                <alwaysOn>true</alwaysOn>
+                <updateRate>1.0</updateRate>
+                <legacyMode>true</legacyMode>
+                <leftJoint>right_wheel_joint</leftJoint>
+                <rightJoint>left_wheel_joint</rightJoint>
+
+                <wheelDiameter>0.1</wheelDiameter>
+                <broadcastTF>1</broadcastTF>
+                <wheelTorque>30</wheelTorque>
+                <wheelAcceleration>1.8</wheelAcceleration>
+                <commandTopic>cmd_vel</commandTopic>
+                <odometryFrame>odom</odometryFrame> 
+                <odometryTopic>odom</odometryTopic> 
+                <robotBaseFrame>base_footprint</robotBaseFrame>               
+                <odometrySource>world</odometrySource> <!-- 'encoder' instead of 'world' is also possible -->
+                <publishTf>true</publishTf>
+            </plugin>
+        </gazebo> 
+
+
+</xacro:macro>
+</robot>

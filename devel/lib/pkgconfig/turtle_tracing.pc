@@ -1,0 +1,8 @@
+prefix=/home/jstone/Documents/ROBOT/ros_1/catkin_ws/devel
+
+Name: turtle_tracing
+Description: Description of turtle_tracing
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

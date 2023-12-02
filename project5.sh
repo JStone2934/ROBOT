@@ -1,0 +1,2 @@
+catkin_make
+roslaunch  mrobot_description  display_mrobot.launch

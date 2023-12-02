@@ -1,0 +1,8 @@
+prefix=/home/jstone/Documents/ROBOT/ros_1/catkin_ws/install
+
+Name: learning_action
+Description: Description of learning_action
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: 

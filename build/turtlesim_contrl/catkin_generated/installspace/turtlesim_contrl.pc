@@ -1,0 +1,8 @@
+prefix=/home/jstone/Documents/ROBOT/ros_1/catkin_ws/install
+
+Name: turtlesim_contrl
+Description: Description of turtlesim_contrl
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
